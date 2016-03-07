@@ -1,4 +1,5 @@
 import tornado.web
+from code.views import UsersHandler
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -7,6 +8,7 @@ class IndexHandler(tornado.web.RequestHandler):
 urls_perfix = "/"
 
 urls_suffix = [
+    (r'/', IndexHandler),
     (r'/', IndexHandler),
     # "/", IndexHandler,
 ]
