@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def get_users():
-    users = [
+    return [
         {
             "name":"xiaoming",
             "age":12
@@ -11,4 +11,3 @@ def get_users():
             "age":8
         }
     ]
-    return users

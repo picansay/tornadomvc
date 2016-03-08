@@ -17,57 +17,11 @@ define("mysql_database", default="ddos_system", help="database name")
 define("mysql_user", default="root", help="database user")
 define("mysql_password", default="Leeknet@123", help="database password")
 
-# class MainHandler(tornado.web.RequestHandler):
-#     def get(self):
-#         self.write("hello")
-# m = __import__("apps.demo.urls")
-# print m 
-# print m.demo
-# print m.demo.urls
-# print m.demo.urls.urls_suffix
-# urls = m.demo.urls.urls_suffix
-# print urls,type(urls)
-# for url in urls:
-#     print url[0],url[1]
-
-
-import glob
-app_url_list = glob.glob("apps/*/urls.py")
-
-handlers = []
-
-for urls in app_url_list:
-    print urls
-    print type(urls)
-    urls = urls[:-3]
-    print urls
-    urls = urls.replace('/','.')
-    print urls
-    apps_meta = __import__(urls)
-    demo_meta = getattr(apps_meta,"demo")
-    urls_meta = getattr(demo_meta,"urls")
-    urls_suffix = getattr(urls_meta,"urls_suffix")
-    print urls_suffix,type(urls_suffix)
-    # handlers += urls
-
-
-    # print m
-    # print m.demo
-    # print m.demo.urls.urls
-    # for url 
-# url= [
-#         (r'/', MainHandler),
-# ]
-
-# url = m.demo.urls.urls_suffix
-# print url
-# for u in url:
-#     print type(u)
-#     print type(u[0]),type(u[1])
+from torna_auto import auto_get_urls
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = None
+        handlers = auto_get_urls()
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
@@ -89,9 +43,3 @@ def main():
        
 if __name__ == "__main__":
     main()
-    # m = __import__("urls")
-    # print m.url
-
-    # print m.demo.code
-    # print m.urls
-    # print urls.url
